@@ -64,7 +64,7 @@ window.addEventListener(
         timeout: 2500,
         icon: false,
         title: hello,
-        message: "欢迎来到我的主页",
+        message: "本主页尚不完善，所以你先去玩沙吧",
       });
     }, 800);
 
@@ -73,14 +73,6 @@ window.addEventListener(
     element.src = "./js/music.js";
     document.body.appendChild(element);
 
-    //中文字体缓加载-此处写入字体源文件 （暂时弃用）
-    //先行加载简体中文子集，后续补全字集
-    //由于压缩过后的中文字体仍旧过大，可转移至对象存储或 CDN 加载
-    // const font = new FontFace(
-    //     "MiSans",
-    //     "url(" + "./font/MiSans-Regular.woff2" + ")"
-    // );
-    // document.fonts.add(font);
 
     //移动端去除鼠标样式
     if (Boolean(window.navigator.userAgent.match(/AppWebKit.*Mobile.*/))) {
@@ -94,17 +86,6 @@ setTimeout(function () {
   $("#loading-text").html("字体及文件加载可能需要一定时间");
 }, 3000);
 
-// 新春灯笼 （ 需要时可取消注释 ）
-// new_element=document.createElement("link");
-// new_element.setAttribute("rel","stylesheet");
-// new_element.setAttribute("type","text/css");
-// new_element.setAttribute("href","./css/lantern.css");
-// document.body.appendChild(new_element);
-
-// new_element=document.createElement("script");
-// new_element.setAttribute("type","text/javascript");
-// new_element.setAttribute("src","./js/lantern.js");
-// document.body.appendChild(new_element);
 
 //获取一言
 fetch("https://v1.hitokoto.cn?max_length=24")
@@ -132,12 +113,6 @@ $("#hitokoto").click(function () {
         $("#from_text").html(data.from);
       })
       .catch(console.error);
-  } else {
-    iziToast.show({
-      timeout: 1000,
-      icon: "fa-solid fa-circle-exclamation",
-      message: "你点太快了吧",
-    });
   }
 });
 
@@ -319,34 +294,6 @@ $("#telegram")
     $("#link-text").html("通过这里联系我");
   });
 
-//自动变灰
-let myDate = new Date();
-let mon = myDate.getMonth() + 1;
-let date = myDate.getDate();
-let days = ["4.4", "5.12", "7.7", "9.9", "9.18", "12.13"];
-for (let day of days) {
-  let d = day.split(".");
-  if (mon == d[0] && date == d[1]) {
-    document.write(
-      "<style>html{-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);filter:progid:DXImageTransform.Microsoft.BasicImage(grayscale=1);_filter:none}</style>"
-    );
-    $("#change").html("Silence&nbsp;in&nbsp;silence");
-    $("#change1").html("今天是中国国家纪念日，全站已切换为黑白模式");
-    window.addEventListener(
-      "load",
-      function () {
-        setTimeout(function () {
-          iziToast.show({
-            timeout: 14000,
-            icon: "fa-solid fa-clock",
-            message: "今天是中国国家纪念日",
-          });
-        }, 3800);
-      },
-      false
-    );
-  }
-}
 
 //更多页面切换
 let shoemore = false;
@@ -355,11 +302,11 @@ $("#switchmore").on("click", function () {
   if (shoemore && $(document).width() >= 990) {
     $("#container").attr("class", "container mores");
     $("#change").html("Oops&nbsp;!");
-    $("#change1").html("哎呀，这都被你发现了（ 再点击一次可关闭 ）");
+    $("#change1").html("再点击一次可关闭");
   } else {
     $("#container").attr("class", "container");
     $("#change").html("Hello&nbsp;World&nbsp;!");
-    $("#change1").html("一个建立于 21 世纪的小站，存活于互联网的边缘");
+    $("#change1").html("<span>因为你的存在，因为伟大的戏剧正在上演，<b style='color:#ff6b81'>因为你可以奉献一首诗</b></span>");
   }
 });
 
@@ -408,7 +355,7 @@ window.addEventListener("load", function () {
       //移动端隐藏更多页面
       $("#container").attr("class", "container");
       $("#change").html("Hello&nbsp;World&nbsp;!");
-      $("#change1").html("一个建立于 21 世纪的小站，存活于互联网的边缘");
+      $("#change1").html("<span>因为你的存在，因为伟大的戏剧正在上演，<b style='color:#ff6b81'>因为你可以奉献一首诗</b></span>");
 
       //移动端隐藏弹窗页面
       $("#box").css("display", "none");
@@ -444,45 +391,7 @@ document.oncontextmenu = function () {
   iziToast.show({
     timeout: 2000,
     icon: "fa-solid fa-circle-exclamation",
-    message: "为了浏览体验，本站禁用右键",
+    message: "本站禁用右键啦",
   });
   return false;
 };
-
-//控制台输出
-//console.clear();
-let styleTitle1 = `
-font-size: 20px;
-font-weight: 600;
-color: rgb(244,167,89);
-`;
-let styleTitle2 = `
-font-size:12px;
-color: rgb(244,167,89);
-`;
-let styleContent = `
-color: rgb(30,152,255);
-`;
-let title1 = "無名の主页";
-let title2 = `
- _____ __  __  _______     ____     __
-|_   _|  \\/  |/ ____\\ \\   / /\\ \\   / /
-  | | | \\  / | (___  \\ \\_/ /  \\ \\_/ / 
-  | | | |\\/| |\\___ \\  \\   /    \\   /  
- _| |_| |  | |____) |  | |      | |   
-|_____|_|  |_|_____/   |_|      |_|                                                     
-`;
-let content = `
-版 本 号：3.4
-更新日期：2022-07-24
-
-主页:  https://www.imsyy.top
-Github:  https://github.com/imsyy/home
-`;
-console.log(
-  `%c${title1} %c${title2}
-%c${content}`,
-  styleTitle1,
-  styleTitle2,
-  styleContent
-);
